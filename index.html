@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-ayIcfxGrqV5K+iaMRXS1VZd/Zr5qoZTY7Wyn4B2Gp6lA9m4DQAt6lcvcAOB6b5FZ5Yl5X54jAPBZJV7vQG+SAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Signup Buttons</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+        }
+
+        .left-column {
+            flex: 1;
+            background: url('img.jpg') center/cover; /* Adjust the image path and properties */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .brand-text {
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .signup-btn {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            color: #000; /* Black text color */
+            background-color: #fff; /* White background */
+            border: none;
+            border-radius: 10px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup-btn:hover {
+            background-color: #f2f2f2; /* Light gray on hover */
+        }
+
+        .signup-btn i {
+            margin-right: 10px;
+        }
+
+        .right-column {
+            flex: 1;
+            background-color: #fff; /* White */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #signup-heading {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        #get-started {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        #signup-form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        #agree-checkbox {
+            margin-bottom: 10px;
+        }
+
+        #terms-text {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        #submit-btn {
+            background-color: #007BFF; /* Blue background */
+            color: #fff; /* White text color */
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-column">
+        <div class="brand-text">Pisocial</div>
+
+        <button class="signup-btn" onclick="showSignupForm('LinkedIn')">
+            <i class="fab fa-linkedin-in"></i><ion-icon name="logo-linkedin" style="color: blue;"></ion-icon>Sign up with LinkedIn
+        </button>
+
+        <button class="signup-btn" onclick="showSignupForm('Facebook')">
+            <i class="fab fa-facebook-f"></i><ion-icon name="logo-facebook" style="color: blue;"></ion-icon>Sign up with Facebook
+        </button>
+
+        <button class="signup-btn" onclick="showSignupForm('Twitter')">
+            <i class="fab fa-twitter"></i><ion-icon name="logo-twitter" style="color: skyblue;"></ion-icon>Sign up with Twitter
+        </button>
+    </div>
+
+    <div class="right-column">
+        <div id="signup-heading"></div>
+        <div id="get-started"></div>
+        <div id="signup-form"></div>
+    </div>
+
+    <script>
+        function showSignupForm(socialMedia) {
+            // Display signup form on the right side
+            var signupHeading = document.getElementById('signup-heading');
+            var getStartedText = document.getElementById('get-started');
+            var signupFormContainer = document.getElementById('signup-form');
+
+            signupHeading.innerText = 'Sign Up with ' + socialMedia;
+            getStartedText.innerText = 'Get started absolutely free';
+
+            // Create form elements
+            var emailLabel = document.createElement('label');
+            emailLabel.innerText = 'Email:';
+            var emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.placeholder = 'Enter your email';
+            emailInput.required = true;
+
+            var passwordLabel = document.createElement('label');
+            passwordLabel.innerText = 'Password:';
+            var passwordInput = document.createElement('input');
+            passwordInput.type = 'password';
+            passwordInput.placeholder = 'Enter your password';
+            passwordInput.required = true;
+
+            var agreeCheckbox = document.createElement('input');
+            agreeCheckbox.type = 'checkbox';
+            agreeCheckbox.id = 'agree-checkbox';
+            agreeCheckbox.required = true;
+
+            var termsLabel = document.createElement('label');
+            termsLabel.innerText = 'I agree to the terms & conditions';
+            termsLabel.htmlFor = 'agree-checkbox';
+            termsLabel.id = 'terms-text';
+            termsLabel.style.display = 'inline-block';
+
+            var submitButton = document.createElement('button');
+            submitButton.id = 'submit-btn';
+            submitButton.innerText = 'Sign Up';
+
+            // Append form elements to the container
+            signupFormContainer.innerHTML = '';
+            signupFormContainer.appendChild(emailLabel);
+            signupFormContainer.appendChild(emailInput);
+            signupFormContainer.appendChild(passwordLabel);
+            signupFormContainer.appendChild(passwordInput);
+            signupFormContainer.appendChild(agreeCheckbox);
+            signupFormContainer.appendChild(termsLabel);
+            signupFormContainer.appendChild(submitButton);
+
+            submitButton.addEventListener('click', function () {
+                var emailValue = emailInput.value;
+                var passwordValue = passwordInput.value;
+
+                console.log('Email:', emailValue);
+                console.log('Password:', passwordValue);
+            });
+        }
+    </script>
+    
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>
+   
+
